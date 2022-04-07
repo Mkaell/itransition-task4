@@ -9,6 +9,7 @@ function App() {
 
   const {token,login,logout,userId, ban} = useAuth()
   const isAuth = ((!!token) && !ban)
+
     
   return (
       <Context.Provider value={{login,logout,userId,token, isAuth, ban}}>

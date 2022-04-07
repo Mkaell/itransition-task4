@@ -22,11 +22,16 @@ export default function useHttp(){
             if(method == 'GET'){
                 responce = await fetch(url,{method,headers})
             } else {
-                responce = await fetch(url,{method,body,headers})
+                try {
+                    responce = await fetch(url,{method,body,headers})
+                } catch (error) {
+                    console.log(error);
+                }
+                
             }
 
             const Data = await responce.json();
-console.log(Data)
+
             if(!responce.ok){
                 throw new Error(Data.message)
             }

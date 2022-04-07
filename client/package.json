@@ -27,7 +27,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "https://itransition-task.herokuapp.com/",
+  "proxy": "http://localhost:8080/",
   "browserslist": {
     "production": [
       ">0.2%",

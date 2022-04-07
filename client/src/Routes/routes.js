@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom"
-import Table from "../Pages/Table";
+import Table from "../Pages/Table.jsx";
 import Auth from "../Pages/Auth.jsx";
 
 

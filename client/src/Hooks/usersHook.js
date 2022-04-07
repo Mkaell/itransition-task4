@@ -10,6 +10,7 @@ export default function useUsersHook() {
         try {
             
             const data = await request('/api/auth/getDbData', 'POST')
+            console.log(data)
             users = Array.from(JSON.parse(data.message))
             return Array.from(JSON.parse(data.message))
         } catch (e) {

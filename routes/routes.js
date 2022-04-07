@@ -48,13 +48,11 @@ router.delete('/delete/:email', async (req,res)=>{
 
 })
 
-router.get('/can/:Id', async(req,res)=>{
+router.get('/can/:id', async(req,res)=>{
 
     res.setHeader('Content-Type', 'application/json')
-    console.log('shdgfjh')
-
+console.log(req.params);
     const targetId = req.params.Id
-    console.log(targetId)
 
     const user = await User.findById(targetId);
 
@@ -101,9 +99,14 @@ const getCurrentDate = ()=>{
 router.get('/getDbData',async (req,res)=> {
 
     res.setHeader('Content-Type', 'application/json');
+    let collectionOfUsers
+    try {
+         collectionOfUsers = await User.find();
+        
+    } catch (error) {
+        console.log(error)
+    }
     
-    const collectionOfUsers = await User.find();
-
     return res.json(collectionOfUsers)
 })
 
@@ -130,9 +133,10 @@ router.post('/register', async (req,res)=>{
             lastLoginDate:getCurrentDate()
         })
 
+        console.log(userCreate)
         await userCreate.save();
 
-        const token = jwt.sign(
+        const token = await jwt.sign(
             {userId: userCreate.id},
             "2002",
             {expiresIn: '1h'}

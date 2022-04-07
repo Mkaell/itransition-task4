@@ -16,9 +16,9 @@ export default function Table(){
     const userInBan = () =>{
 
         const getStatus = async ()=>{
-
+            console.log(auth.userId);
             const data = await request(`/api/auth/can/${auth.userId}`, 'GET' );
-
+            console.log(data);
             localStorage.setItem('inBan',JSON.stringify({inBan:data.message}));
             const {inBan} = JSON.parse(localStorage.getItem('inBan'));
 
@@ -203,7 +203,7 @@ return(
                     {users.map((user) => {
                         if(user){
                             return(
-                                <tr style={{textAlign: 'center'}} key={user._id}>
+                                <tr style={{textAlign: 'center'}}>
                                     <td>
                                         <input type="checkbox" checked={user.isSelected} onChange={() => changeBox(user)}/>
                                     </td>
