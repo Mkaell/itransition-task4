@@ -2,35 +2,37 @@ import React, { useContext, useEffect, useState } from "react";
 import 'react-bootstrap';
 import useHttp from "../Hooks/httpHook";
 import { Context } from "../context/Context";
+
 const columns = ["Name", "Id", "Email", "isBanned", "Registration Date", "Last Login Date"]
 
 export default function Table() {
 
     const { request } = useHttp()
+
     const [inBan, setBan] = useState(false)
     const [checked, setCheck] = useState(false)
     const auth = useContext(Context)
 
     let [users, setUsers] = useState([])
 
-    const userInBan = () => {
+    // const userInBan = () => {
 
-        const getStatus = async () => {
-            console.log(auth.userId);
-            const data = await request(`/api/auth/ban/${auth.userId}`, 'GET');
-            localStorage.setItem('inBan', JSON.stringify({ inBan: data.message }));
-            const { inBan } = JSON.parse(localStorage.getItem('inBan'));
+    //     const getStatus = async () => {
+    //         console.log(auth.userId);
+    //         const data = await request(`/api/auth/ban/${auth.userId}`, 'GET');
+    //         localStorage.setItem('inBan', JSON.stringify({ inBan: data.message }));
+    //         const { inBan } = JSON.parse(localStorage.getItem('inBan'));
 
-            setBan(inBan);
-        }
+    //         setBan(inBan);
+    //     }
 
-        getStatus()
-        return inBan
-    }
+    //     getStatus()
+    //     return inBan
+    // }
 
     useEffect(() => {
 
-        banUser()
+        // banUser()
 
         if (!inBan) {
             try {
@@ -42,10 +44,11 @@ export default function Table() {
                         setUsers(data)
                         return data
                     } catch (error) {
-                        console.log(error + `sdjfnjksdnfjsdfksb`)
+                        console.log(error)
                     }
 
                 }
+
                 const data = getData()
                 console.log(data)
                 return data
@@ -58,12 +61,12 @@ export default function Table() {
         }
     }, [])
 
-    const banUser = () => {
-        userInBan()
-    }
+    // const banUser = () => {
+    //     userInBan()
+    // }
 
     const changeBox = (User) => {
-        banUser()
+        // banUser()
         if (!inBan) {
             setUsers(users.map(user => {
                 if (user == User) {
@@ -89,7 +92,7 @@ export default function Table() {
 
     const unBanUsers = () => {
 
-        banUser()
+        // banUser()
         if (!inBan) {
 
             setUsers(users.map(user => {
@@ -109,7 +112,7 @@ export default function Table() {
 
     const banUsers = () => {
 
-        banUser()
+        // banUser()
         if (!inBan) {
 
             setUsers(users.map(user => {
@@ -141,7 +144,7 @@ export default function Table() {
 
     const DeleteUsers = () => {
 
-        banUser()
+        // banUser()
         if (!inBan) {
 
             setUsers(users.map(user => {
@@ -163,7 +166,7 @@ export default function Table() {
 
     const sellectAll = () => {
 
-        banUser()
+        // banUser()
         if (!inBan) {
             setCheck(!checked)
             setUsers(users.map(user => {

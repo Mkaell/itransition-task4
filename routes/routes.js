@@ -55,17 +55,32 @@ router.get('/ban/:id', async(req,res)=>{
     const targetId = req.params.Id
 
     const user = await User.findById(targetId);
-    return new Promise(resolve => {
-        if (user.isBanned){
-            return res.json({message:true})
-        } else {
-            return res.json({message:false})
-        }
-    })
-
+   
+    if (user.isBanned){
+        return res.json({message:true})
+    } else {
+        return res.json({message:false})
+    }
 
 })
+// (jwtToken, Id, isBanned, userMail) => {
+//     setToken(jwtToken);
+//     setId(Id);
+//     setBan(isBanned);
+//     setMail(userMail);
 
+//     if (!isBanned) {
+//       localStorage.setItem('userData', JSON.stringify({
+//         userId: Id,
+//         token: jwtToken,
+//         isBanned: isBanned,
+//         userEmail: userMail
+//       }));
+//       localStorage.setItem('inBan', JSON.stringify({
+//         inBan: isBanned
+//       }));
+//     }
+//   }
 router.put('/update/:email/:name', async (req,res)=>{
 
     try{
