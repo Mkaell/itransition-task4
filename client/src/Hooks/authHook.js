@@ -7,14 +7,14 @@ export default function  useAuth(){
     const [ban, setBan] = useState(false)
     const [mail, setMail] = useState(null)
 
-    console.log(userId)
+    
     const login = useCallback((jwtToken, Id, isBanned, userMail)=>{
 
         setToken(jwtToken)
         setId(Id)
         setBan(isBanned)
         setMail(userMail)
-
+        
         if(!isBanned){
             localStorage.setItem('userData',JSON.stringify({userId:Id,token:jwtToken, isBanned:isBanned, userEmail:userMail}))
             localStorage.setItem('inBan', JSON.stringify({inBan:isBanned}))

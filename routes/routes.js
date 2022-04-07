@@ -48,19 +48,21 @@ router.delete('/delete/:email', async (req,res)=>{
 
 })
 
-router.get('/can/:id', async(req,res)=>{
+router.get('/ban/:id', async(req,res)=>{
 
     res.setHeader('Content-Type', 'application/json')
-console.log(req.params);
+    console.log(req.params);
     const targetId = req.params.Id
 
     const user = await User.findById(targetId);
+    return new Promise(resolve => {
+        if (user.isBanned){
+            return res.json({message:true})
+        } else {
+            return res.json({message:false})
+        }
+    })
 
-    if (user.isBanned){
-        return res.json({message:true})
-    } else {
-        return res.json({message:false})
-    }
 
 })
 

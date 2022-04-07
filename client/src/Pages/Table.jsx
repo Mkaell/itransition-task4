@@ -17,7 +17,7 @@ export default function Table() {
 
         const getStatus = async () => {
             console.log(auth.userId);
-            const data = await request(`/api/auth/can/${auth.userId}`, 'GET');
+            const data = await request(`/api/auth/ban/${auth.userId}`, 'GET');
             localStorage.setItem('inBan', JSON.stringify({ inBan: data.message }));
             const { inBan } = JSON.parse(localStorage.getItem('inBan'));
 
@@ -36,10 +36,15 @@ export default function Table() {
             try {
 
                 const getData = async () => {
-                    const data = await request('/api/auth/getDbData', 'GET')
+                    try {
+                        const data = await request('/api/auth/getDbData', 'GET')
 
-                    setUsers(data)
-                    return data
+                        setUsers(data)
+                        return data
+                    } catch (error) {
+                        console.log(error + `sdjfnjksdnfjsdfksb`)
+                    }
+
                 }
                 const data = getData()
                 console.log(data)
