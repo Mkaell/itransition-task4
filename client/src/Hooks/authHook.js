@@ -7,7 +7,7 @@ export default function  useAuth(){
     const [ban, setBan] = useState(false)
     const [mail, setMail] = useState(null)
 
-
+    console.log(userId)
     const login = useCallback((jwtToken, Id, isBanned, userMail)=>{
 
         setToken(jwtToken)

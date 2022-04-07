@@ -13,3 +13,5 @@ export const Context = createContext({
     isBanned:false,
     userEmail:null
 })
+
+console.log(Context.login)

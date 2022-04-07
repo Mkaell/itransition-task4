@@ -2,11 +2,12 @@ import React, { useContext, useState } from "react";
 import 'react-bootstrap'
 import useHttp from "../Hooks/httpHook";
 import { Context } from "../context/Context";
-
+import useAuth from '../Hooks/authHook'
 
 export default function Auth() {
 
     const auth = useContext(Context)
+
     const [open, setOpen] = useState(true)
     const { loading, request } = useHttp()
     const [form, setForm] = useState({
@@ -37,9 +38,8 @@ export default function Auth() {
         try {
             const { email, password } = { ...form };
             const data = await request('/api/auth/login', 'POST', { email, password }, {});
+
             auth.login(data.token, data.userId, data.isBanned, data.userEmail)
-            // eslint-disable-next-line no-restricted-globals
-            location.reload()
         } catch (e) {
             alert(e.message);
         }
