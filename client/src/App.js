@@ -9,7 +9,6 @@ function App() {
 
   const {token,login,logout,userId, ban} = useAuth()
   const isAuth = ((!!token) && !ban)
-  console.log(isAuth);
     
   return (
       <Context.Provider value={{login,logout,userId,token, isAuth, ban}}>

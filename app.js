@@ -3,7 +3,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const routes = require('./routes/routes')
-// const config = require('config')
 const path = require('path')
 require('dotenv').config()
 

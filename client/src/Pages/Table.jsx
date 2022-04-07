@@ -15,24 +15,8 @@ export default function Table() {
 
     let [users, setUsers] = useState([])
 
-    // const userInBan = () => {
-
-    //     const getStatus = async () => {
-    //         console.log(auth.userId);
-    //         const data = await request(`/api/auth/ban/${auth.userId}`, 'GET');
-    //         localStorage.setItem('inBan', JSON.stringify({ inBan: data.message }));
-    //         const { inBan } = JSON.parse(localStorage.getItem('inBan'));
-
-    //         setBan(inBan);
-    //     }
-
-    //     getStatus()
-    //     return inBan
-    // }
 
     useEffect(() => {
-
-        // banUser()
 
         if (!inBan) {
             try {
@@ -46,11 +30,10 @@ export default function Table() {
                     } catch (error) {
                         console.log(error)
                     }
-
                 }
 
                 const data = getData()
-                console.log(data)
+
                 return data
             }
             catch (e) {
@@ -61,12 +44,9 @@ export default function Table() {
         }
     }, [])
 
-    // const banUser = () => {
-    //     userInBan()
-    // }
 
     const changeBox = (User) => {
-        // banUser()
+
         if (!inBan) {
             setUsers(users.map(user => {
                 if (user == User) {
@@ -92,7 +72,7 @@ export default function Table() {
 
     const unBanUsers = () => {
 
-        // banUser()
+
         if (!inBan) {
 
             setUsers(users.map(user => {
@@ -112,7 +92,6 @@ export default function Table() {
 
     const banUsers = () => {
 
-        // banUser()
         if (!inBan) {
 
             setUsers(users.map(user => {
@@ -144,7 +123,6 @@ export default function Table() {
 
     const DeleteUsers = () => {
 
-        // banUser()
         if (!inBan) {
 
             setUsers(users.map(user => {
@@ -166,7 +144,6 @@ export default function Table() {
 
     const sellectAll = () => {
 
-        // banUser()
         if (!inBan) {
             setCheck(!checked)
             setUsers(users.map(user => {

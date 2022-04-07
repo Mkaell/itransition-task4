@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import 'react-bootstrap'
 import useHttp from "../Hooks/httpHook";
 import { Context } from "../context/Context";
-import useAuth from '../Hooks/authHook'
+import Login from "./Login";
+import Register from "./Register";
 
 export default function Auth() {
 
@@ -13,7 +14,7 @@ export default function Auth() {
     const [form, setForm] = useState({
         email: '', password: '', name: ''
     })
-    console.log(auth)
+
     const formHandler = (event) => {
 
         setForm({ ...form, [event.target.name]: event.target.value })
@@ -58,60 +59,10 @@ export default function Auth() {
                 <div className="container d-flex justify-content-around" >
                     {
                         open ?
-                            <div className="col-5 p-3">
-                                <form className='form card'>
-                                    <h2 className="card-title text-center mt-2" style={{ fontFamily: 'Roboto', fontWeight: '700' }}>LogIn</h2>
-                                    <div className="card-body">
-                                        <div className="form-group">
-                                            <label htmlFor="email">Email</label>
-                                            <input type="email" className="form-control" id="email" placeholder="Enter email" name="email"
-                                                onChange={formHandler} />
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="password">Password</label>
-                                            <input type="password" className="form-control" id="password" placeholder="Enter password"
-                                                name="password"
-                                                onChange={formHandler} />
-                                        </div>
-                                        <button className="btn btn-warning" style={{ width: '100%' }} disabled={loading} onClick={() => loginHandler()}>Log In</button>
-                                    </div>
-
-                                </form>
-                            </div>
+                            <Login formHandler={formHandler} loading={loading} loginHandler={loginHandler} />
                             :
-                            <div className="col-5 p-2">
+                            <Register formHandler={formHandler} loading={loading} registrationHandler={registrationHandler} />
 
-                                <form className=" card">
-                                    <h2 className="card-title text-center mt-2" style={{ fontFamily: 'Roboto', fontWeight: '700' }}>Register</h2>
-                                    <div className="card-body">
-                                        <div className="form-group">
-                                            <label htmlFor="name">Name</label>
-                                            <input type="text" className="form-control" id="name" placeholder="Enter your name" name="name"
-                                                value={form.name}
-                                                onChange={formHandler} />
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="email">Email</label>
-                                            <input type="email" className="form-control" id="email" placeholder="Enter email" name="email"
-                                                value={form.email}
-                                                onChange={formHandler} />
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="password">Password</label>
-                                            <input
-                                                type="password"
-                                                className="form-control" i
-                                                d="password"
-                                                value={form.password}
-                                                placeholder="Enter password"
-                                                name="password"
-                                                onChange={formHandler} />
-                                        </div>
-                                        <button className="btn btn-warning" style={{ width: '100%' }} disabled={loading} onClick={registrationHandler}>Sign up</button>
-                                    </div>
-
-                                </form>
-                            </div>
                     }
 
                 </div>

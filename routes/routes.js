@@ -63,24 +63,7 @@ router.get('/ban/:id', async(req,res)=>{
     }
 
 })
-// (jwtToken, Id, isBanned, userMail) => {
-//     setToken(jwtToken);
-//     setId(Id);
-//     setBan(isBanned);
-//     setMail(userMail);
 
-//     if (!isBanned) {
-//       localStorage.setItem('userData', JSON.stringify({
-//         userId: Id,
-//         token: jwtToken,
-//         isBanned: isBanned,
-//         userEmail: userMail
-//       }));
-//       localStorage.setItem('inBan', JSON.stringify({
-//         inBan: isBanned
-//       }));
-//     }
-//   }
 router.put('/update/:email/:name', async (req,res)=>{
 
     try{
@@ -150,14 +133,12 @@ router.post('/register', async (req,res)=>{
             lastLoginDate:getCurrentDate()
         })
 
-        console.log(userCreate)
         await userCreate.save();
 
         const token = await jwt.sign(
             {userId: userCreate.id},
             "2002",
             {expiresIn: '1h'}
-
         )
 
         return res.status(201).json({
@@ -180,8 +161,6 @@ router.post('/login',async (req,res)=>{
 
         res.setHeader('Content-Type', 'application/json')
         const {email,password} = req.body
-
-        console.log("email: ", email, " password: ", password)
 
         let user = await User.findOne({email:email})
 
